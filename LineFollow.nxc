@@ -1,0 +1,30 @@
+#define THRESHOLD 37
+#define Speed_std 55
+
+task main()
+{
+  SetSensorLight(IN_3);
+  SetSensorColorFull(IN_1);
+  while (true)
+  {
+    OnFwd(OUT_AC, Speed_std);
+    if (Sensor(IN_3) < THRESHOLD)
+    {
+      OnFwd(OUT_C, 70);
+      Wait(50);
+      until(Sensor(IN_1) == 6);
+      Off(OUT_AC);
+      /*OnFwd(OUT_C, Speed_std);*/
+      /*OnFwd(OUT_A, 70);*/
+    }
+    else if (Sensor(IN_1) == 6)
+    {
+      /*OnFwd(OUT_A, 70);*/
+      /*Wait(50);*/
+      /*until(Sensor(IN_3) < THRESHOLD);*/
+      Off(OUT_AC);
+      /*OnFwd(OUT_A, Speed_std);*/
+      /*OnFwd(OUT_C, 70);*/
+    }
+  }
+}

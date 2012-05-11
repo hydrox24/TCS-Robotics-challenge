@@ -1,0 +1,32 @@
+#define SPEED 45
+#define CorrectHigh 70
+#define CorrectLow 10
+
+task main()
+{
+  OnFwd(OUT_AC, 70);
+  Wait(10);
+  SetSensorLight(IN_3);
+  SetSensorColorFull(IN_1);
+  OnFwd(OUT_AC, SPEED);
+  while (true)
+  {
+    if (Sensor(IN_1) == 6)
+    {
+      OnFwd(OUT_C, CorrectHigh);
+      OnFwd(OUT_A, CorrectLow);
+      Wait(10);
+    }
+    else if (Sensor(IN_3) > 45)
+    {
+      OnFwd(OUT_A, CorrectHigh);
+      OnFwd(OUT_C, CorrectLow);
+      Wait(10);
+    }
+    else
+    {
+      OnFwd(OUT_AC, SPEED);
+      Wait(5);
+    }
+  }
+}
