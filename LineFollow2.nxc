@@ -1,6 +1,9 @@
-#define SPEED 45
+#define SPEED 35
 #define CorrectHigh 70
-#define CorrectLow 10
+#define CorrectLow 5
+
+int Black_time;
+int Last_detected;
 
 task main()
 {
@@ -9,22 +12,46 @@ task main()
   SetSensorLight(IN_3);
   SetSensorColorFull(IN_1);
   OnFwd(OUT_AC, SPEED);
+  Black_time = 0;
+  Last_detected = 0;
   while (true)
   {
     if (Sensor(IN_1) == 6)
     {
+      Black_time = 0;
+      Last_detected = 1;
       OnFwd(OUT_C, CorrectHigh);
       OnFwd(OUT_A, CorrectLow);
+      /*until(Sensor(IN_3) > 38);*/
       Wait(10);
     }
-    else if (Sensor(IN_3) > 45)
+    else if (Sensor(IN_3) > 38)
     {
+      Black_time = 0;
+      Last_detected = 3;
       OnFwd(OUT_A, CorrectHigh);
       OnFwd(OUT_C, CorrectLow);
+      /*until(Sensor(IN_1) == 6);*/
       Wait(10);
     }
+    /*else if (Black_time >= 100 )*/
+    /*{*/
+    /*  if (Last_detected == 1)*/
+    /*  {*/
+    /*    Off(OUT_AC);*/
+    /*    OnFwd(OUT_C, SPEED); */
+    /*  }*/
+    /*  else if (Last_detected == 3)*/
+
+
+    /*  {*/
+    /*    Off(OUT_AC);*/
+    /*    OnFwd(OUT_A, SPEED); */
+    /*  }*/
+    /*}*/
     else
     {
+      Black_time += 1;
       OnFwd(OUT_AC, SPEED);
       Wait(5);
     }
