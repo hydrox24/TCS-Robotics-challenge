@@ -1,6 +1,6 @@
-#define SPEED 35
-#define CorrectHigh 70
-#define CorrectLow 5
+#define SPEED 45
+#define CorrectHigh 75
+#define CorrectLow 10
 
 int Black_time;
 int Last_detected;
@@ -22,7 +22,6 @@ task main()
       Last_detected = 1;
       OnFwd(OUT_C, CorrectHigh);
       OnFwd(OUT_A, CorrectLow);
-      Wait(10);
     }
     else if (Sensor(IN_3) > 38)
     {
@@ -30,7 +29,6 @@ task main()
       Last_detected = 3;
       OnFwd(OUT_A, CorrectHigh);
       OnFwd(OUT_C, CorrectLow);
-      Wait(10);
     }
     else if (Black_time >= 100 )
     {
@@ -39,15 +37,16 @@ task main()
         Off(OUT_AC);
         OnFwd(OUT_C, SPEED); 
       }
-      else (Last_detected == 3)
+      else
       {
         Off(OUT_AC);
         OnFwd(OUT_A, SPEED); 
       }
+      Black_time = 0;
     }
     else
     {
-      Black_time += 1;
+      Black_time += 4;
       OnFwd(OUT_AC, SPEED);
       Wait(5);
     }

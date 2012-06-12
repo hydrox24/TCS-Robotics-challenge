@@ -1,5 +1,5 @@
 task main()
 {
-	OnFwd(OUT_AC, 100);
+	OnFwd(OUT_ABC, 100);
 	Wait(2000);
 }
