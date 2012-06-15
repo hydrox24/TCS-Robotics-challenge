@@ -18,37 +18,36 @@ task main()
   {
     if (Sensor(IN_1) == 6)
     {
-      Black_time = 0;
+      Black_time -= 5;
       Last_detected = 1;
       OnFwd(OUT_C, CorrectHigh);
       OnFwd(OUT_A, CorrectLow);
     }
     else if (Sensor(IN_3) > 38)
     {
-      Black_time = 0;
+      Black_time -= 5;
       Last_detected = 3;
       OnFwd(OUT_A, CorrectHigh);
       OnFwd(OUT_C, CorrectLow);
     }
-    else if (Black_time >= 100 )
-    {
-      if (Last_detected == 1)
-      {
-        Off(OUT_AC);
-        OnFwd(OUT_C, SPEED); 
-      }
-      else
-      {
-        Off(OUT_AC);
-        OnFwd(OUT_A, SPEED); 
-      }
-      Black_time = 0;
-    }
+//    else if (Black_time >= 100 )
+//    {
+//      if (Last_detected == 1)
+//      {
+//        Off(OUT_AC);
+//        OnFwd(OUT_C, SPEED); 
+//      }
+//      else
+//      {
+//        Off(OUT_AC);
+//        OnFwd(OUT_A, SPEED); 
+//      }
+//      Black_time = 0;
+//    }
     else
     {
-      Black_time += 4;
+      Black_time += 10;
       OnFwd(OUT_AC, SPEED);
-      Wait(5);
     }
   }
 }
