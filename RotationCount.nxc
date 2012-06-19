@@ -1,0 +1,15 @@
+int tachocount;
+string stringtacho;
+
+task main()
+{
+  TextOut(1, LCD_LINE3, "Degrees on OUT_A: ");
+  while(true)
+  {
+    ClearLine(LCD_LINE4);
+    tachocount = MotorRotationCount(OUT_A);
+    stringtacho = NumToStr(tachocount);
+    TextOut(1, LCD_LINE4, stringtacho);
+    Wait(100);
+  }
+}
