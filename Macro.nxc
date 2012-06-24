@@ -1,16 +1,21 @@
+#include "file_system.nxc"
+
 task main()
 {
-  int previous_step_valueA, previous_step_valueC;
-  int current_step_valueA, current_step_valueC;
-  int step_diffA, step_diffC;
-  while(true)
-  {
-    MotorRotationCount(OUT_A);
-    current_step_valueA = MotorRotationCount(OUT_A);
-    current_step_valueC = MotorRotationCount(OUT_C);
-    step_diffA = current_step_valueA - previous_step_valueA;
-    step_diffC = current_step_valueC - previous_step_valueC;
-    previous_step_valueA = MotorRotationCount(OUT_A);
-    previous_step_valueC = MotorRotationCount(OUT_C);
-  }
+	int previous_step_valueA, previous_step_valueC;
+	int current_step_valueA, current_step_valueC;
+	int step_diffA, step_diffC;
+	CreateFile("data.txt", 10240, handle);
+	open_for_write();
+	while(true)
+	{
+		MotorRotationCount(OUT_A);
+		current_step_valueA = MotorRotationCount(OUT_A);
+		current_step_valueC = MotorRotationCount(OUT_C);
+		step_diffA = current_step_valueA - previous_step_valueA;
+		step_diffC = current_step_valueC - previous_step_valueC;
+		previous_step_valueA = MotorRotationCount(OUT_A);
+		previous_step_valueC = MotorRotationCount(OUT_C);
+		write_recd(previous_step_valueC);
+	}
 }
