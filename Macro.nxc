@@ -1,0 +1,19 @@
+#undef
+#include libs/logging.nxc
+
+task main()
+{
+  int previous_step_valueA;
+  int previous_step_valueC;
+  int current_step_valueA;
+  int current_step_valueC;
+  int step_diff;
+  previous_step_value = 0;
+  while(true)
+  {
+    MotorRotationCount(OUT_A)
+//  set current_step_value;
+//  set step_diff = current_step_value - previous_step_value;
+//  LOG step_diff
+  }
+}
