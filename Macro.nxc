@@ -1,19 +1,25 @@
-#undef
-#include libs/logging.nxc
+bool LOGGING=true;
+#define LOGFILE "macro.log"
+#define LOGFILE_SIZE 30000
+#include "libs/logging.nxc"
 
 task main()
 {
-  int previous_step_valueA;
-  int previous_step_valueC;
-  int current_step_valueA;
-  int current_step_valueC;
-  int step_diff;
-  previous_step_value = 0;
+  openLogFile(LOGFILE,LOGFILE_SIZE);
+  int previous_step_valueA, previous_step_valueC;
+  int current_step_valueA, current_step_valueC;
+  int step_diffA, step_diffC;
   while(true)
   {
-    MotorRotationCount(OUT_A)
-//  set current_step_value;
-//  set step_diff = current_step_value - previous_step_value;
-//  LOG step_diff
+    MotorRotationCount(OUT_A);
+    current_step_valueA = MotorRotationCount(OUT_A);
+    current_step_valueC = MotorRotationCount(OUT_C);
+    step_diffA = current_step_valueA - previous_step_valueA;
+    step_diffC = current_step_valueC - previous_step_valueC;
+    previous_step_valueA = MotorRotationCount(OUT_A);
+    previous_step_valueC = MotorRotationCount(OUT_C);
+//    writeLogValue("step_diffA", step_diffA);
+//    writeLogValue("step_diffC", step_diffC);
   }
+//  closeLogFile();
 }
