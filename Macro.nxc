@@ -2,7 +2,7 @@
 #define RECORDS 5000
 #define RECORD_SIZE 3
 #define FILE_SIZE (RECORD_SIZE * RECORDS)
-#define FILE_NAME "data.txt"
+#define FILE_NAME "movement.dat"
 
 #include "file_system.nxc"
 

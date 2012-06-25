@@ -1,0 +1,14 @@
+#define FILE_NAME "movement.dat"
+
+/*void rtn_code_out(unsigned int code)*/
+/*{*/
+/*	TextOut(0, LCD_LINE1, "code            ");*/
+/*	TextOut(50, LCD_LINE1, FormatNum("% 04X", code));*/
+/*}*/
+
+task main()
+{
+	unsigned int rtn_code = DeleteFile(FILE_NAME);
+	/*rtn_code_out(rtn_code);*/
+	/*Wait(SEC_5);*/
+}
