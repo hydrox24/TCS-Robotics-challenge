@@ -5,7 +5,6 @@ task main()
 	int previous_step_valueA, previous_step_valueC;
 	int current_step_valueA, current_step_valueC;
 	int step_diffA, step_diffC;
-	CreateFile("data.txt", 10240, handle);
 	open_for_write();
 	while(true)
 	{
@@ -16,6 +15,6 @@ task main()
 		step_diffC = current_step_valueC - previous_step_valueC;
 		previous_step_valueA = MotorRotationCount(OUT_A);
 		previous_step_valueC = MotorRotationCount(OUT_C);
-		write_recd(previous_step_valueC);
+		write_recd(step_diffA);
 	}
 }

@@ -20,6 +20,7 @@ byte handle = 0; // file handle
 #define RECORDS 5000
 #define RECORD_SIZE 3
 #define FILE_SIZE (RECORD_SIZE * RECORDS)
+#define FILE_NAME "data.txt"
 
 // Make sure file is closed whether or not file operations succeed or fail.
 void shutdown(const int delay)
@@ -35,8 +36,8 @@ void shutdown(const int delay)
 // Display a return code from a file sytem API call on the NXT screen.
 void rtn_code_out(const unsigned int code)
 {
-	TextOut(0, LCD_LINE2, "code            ");
-	TextOut(50, LCD_LINE2, FormatNum("%04x", code));
+	/*TextOut(0, LCD_LINE2, "code            ");*/
+	/*TextOut(50, LCD_LINE2, FormatNum("%04x", code));*/
 }
 
 // Open the data file for writing.
@@ -84,9 +85,9 @@ void open_for_read()
 }
 
 // Write one circle record to the data file.
-void write_recd(const circle recd)
+void write_recd(int recd)
 {
-	unsigned int rtn_code = Write(handle, recd);
+	int rtn_code = Write(handle, recd);
 	// Return code handling
 	if (rtn_code != LDR_SUCCESS)
 	{
@@ -107,7 +108,7 @@ void write_recd(const circle recd)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(circle & recd)
+void read_all(int recd)
 {
 	while (true)
 	{
@@ -116,11 +117,11 @@ void read_all(circle & recd)
 		// Return code handling   
 		switch (rtn_code)
 		{
-			case LDR_SUCCESS:
+			// case LDR_SUCCESS:
 				// Record has been read. Display circle described by it.
-				CircleOut(recd.cx, recd.cy, recd.r);
-				Wait(SEC_2);
-				break;
+				// CircleOut(recd.cx, recd.cy, recd.r);
+				// Wait(SEC_2);
+				// break;
 			case LDR_ENDOFFILE:
 				// No more data to read.
 				return;
