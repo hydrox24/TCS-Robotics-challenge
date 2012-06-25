@@ -79,11 +79,12 @@ void open_for_read()
 }
 
 // Write one circle record to the data file.
-void write_recd(int recd)
+void write_recd(short recd, short recd2)
 {
 	int rtn_code = Write(handle, recd);
+	int rtn_code2 = Write(handle, recd);
 	// Return code handling
-	if (rtn_code != LDR_SUCCESS)
+	if (rtn_code != LDR_SUCCESS || rtn_code2 != LDR_SUCCESS)
 	{
 		switch (rtn_code)
 		{
@@ -102,7 +103,7 @@ void write_recd(int recd)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(int recd)
+void read_all(short recd)
 {
 	while (true)
 	{

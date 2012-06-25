@@ -1,6 +1,6 @@
 // The file size is made small so it will fill up quickly.
-#define RECORDS 5000
-#define RECORD_SIZE 3
+#define RECORDS 20000
+#define RECORD_SIZE 2
 #define FILE_SIZE (RECORD_SIZE * RECORDS)
 #define FILE_NAME "movement.dat"
 
@@ -8,9 +8,9 @@
 
 task main()
 {
-	int previous_step_valueA, previous_step_valueC;
-	int current_step_valueA, current_step_valueC;
-	int step_diffA, step_diffC;
+	short previous_step_valueA, previous_step_valueC;
+	short current_step_valueA, current_step_valueC;
+	short step_diffA, step_diffC;
 	open_for_write();
 	while(true)
 	{
@@ -21,6 +21,6 @@ task main()
 		step_diffC = current_step_valueC - previous_step_valueC;
 		previous_step_valueA = MotorRotationCount(OUT_A);
 		previous_step_valueC = MotorRotationCount(OUT_C);
-		write_recd(step_diffA);
+		write_recd(step_diffA, step_diffC);
 	}
 }
