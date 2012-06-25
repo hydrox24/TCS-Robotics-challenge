@@ -16,12 +16,6 @@
 
 byte handle = 0; // file handle
 
-// The file size is made small so it will fill up quickly.
-#define RECORDS 5000
-#define RECORD_SIZE 3
-#define FILE_SIZE (RECORD_SIZE * RECORDS)
-#define FILE_NAME "data.txt"
-
 // Make sure file is closed whether or not file operations succeed or fail.
 void shutdown(const int delay)
 {
