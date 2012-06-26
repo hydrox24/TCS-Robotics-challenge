@@ -1,0 +1,14 @@
+#define RECORDS 2000
+#define RECORD_SIZE 6
+#define FILE_SIZE (RECORD_SIZE * RECORDS)
+#define FILE_NAME "movement.dat"
+
+#include "file_system.nxc"
+
+task main()
+{
+	open_for_read();
+	while(true)
+	{
+	}
+}

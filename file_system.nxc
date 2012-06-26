@@ -79,10 +79,12 @@ void open_for_read()
 }
 
 // Write one circle record to the data file.
-void write_recd(short recd, short recd2)
+void write_recd(int recd, int recd2)
 {
 	int rtn_code = Write(handle, recd);
+	int temp = Write(handle, " ");
 	int rtn_code2 = Write(handle, recd);
+	int temp1 = Write(handle, "\n");
 	// Return code handling
 	if (rtn_code != LDR_SUCCESS || rtn_code2 != LDR_SUCCESS)
 	{
@@ -90,12 +92,12 @@ void write_recd(short recd, short recd2)
 		{
 			case LDR_EOFEXPECTED:
 				TextOut(0, LCD_LINE1, "no more space   ");
-				break;
+				/*break;*/
 			default:
 				// Unanticipated exception. 
-				TextOut(0, LCD_LINE1, "write failed    ");
+				TextOut(0, LCD_LINE1, "Unknown Error");
 				rtn_code_out(rtn_code);
-				break;
+				/*break;*/
 		}
 		shutdown(SEC_8);
 	}
@@ -103,7 +105,7 @@ void write_recd(short recd, short recd2)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(short recd)
+void read_all(int recd)
 {
 	while (true)
 	{
