@@ -8,20 +8,14 @@
 
 task main()
 {
-	int previous_step_valueA, previous_step_valueC;
-	int current_step_valueA, current_step_valueC;
-	int step_diffA, step_diffC;
+	int step_valueA, step_valueC;
 	open_for_write();
 	while(true)
 	{
-		MotorRotationCount(OUT_A);
-		current_step_valueA = MotorRotationCount(OUT_A);
-		current_step_valueC = MotorRotationCount(OUT_C);
-		step_diffA = current_step_valueA - previous_step_valueA;
-		step_diffC = current_step_valueC - previous_step_valueC;
-		previous_step_valueA = MotorRotationCount(OUT_A);
-		previous_step_valueC = MotorRotationCount(OUT_C);
-		write_recd(step_diffA,step_diffC);
+		step_valueA = MotorRotationCount(OUT_A);
+		step_valueC = MotorRotationCount(OUT_C);
+		write_recd(step_valueA,step_valueC);
+		ResetTachoCount(OUT_AC);
 		Wait(20);
 	}
 }
