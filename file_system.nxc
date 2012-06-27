@@ -114,7 +114,7 @@ void write_recd(const movement recd)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(const movement recd, unsigned int &current)
+void read_all(const movement recd, movement &current)
 {
 	unsigned int rtn_code = Read(handle, recd);
 	// rtn_code_out(rtn_code);

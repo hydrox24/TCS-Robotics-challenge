@@ -9,7 +9,8 @@ task main()
 {
 	open_for_read();
 	movement m;
-	read_all(m);
+	movement current;
+	read_all(m,current);
 	RotateMotor(OUT_A,75,m.stepA);
 	RotateMotor(OUT_C,75,m.stepC);
 }
