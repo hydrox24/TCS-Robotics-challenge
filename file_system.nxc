@@ -114,28 +114,25 @@ void write_recd(const movement recd)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(const movement recd)
+void read_all(const movement recd, unsigned int &current)
 {
-	while (true)
+	unsigned int rtn_code = Read(handle, recd);
+	// rtn_code_out(rtn_code);
+	// Return code handling   
+	switch (rtn_code)
 	{
-		unsigned int rtn_code = Read(handle, recd);
-		// rtn_code_out(rtn_code);
-		// Return code handling   
-		switch (rtn_code)
-		{
-			// case LDR_SUCCESS:
-				// Record has been read. Display circle described by it.
-				// CircleOut(recd.cx, recd.cy, recd.r);
-				// Wait(SEC_2);
-				// break;
-			case LDR_ENDOFFILE:
-				// No more data to read.
-				return;
-			default:
-				// Unanticipated exception. 
-				TextOut(0, LCD_LINE1, "read failed     ");
-				rtn_code_out(rtn_code);
-				shutdown(SEC_8);
-		}
+		case LDR_SUCCESS:
+				current.stepA = recd.stepA;
+				current.stepC = recd.stepC;
+			Wait(SEC_2);
+			break;
+		case LDR_ENDOFFILE:
+			// No more data to read.
+			return;
+		default:
+			// Unanticipated exception. 
+			TextOut(0, LCD_LINE1, "read failed     ");
+			rtn_code_out(rtn_code);
+			shutdown(SEC_8);
 	}
 }
