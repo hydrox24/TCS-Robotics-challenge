@@ -114,25 +114,30 @@ void write_recd(const movement recd)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(const movement recd, movement &current)
+void play_all(const movement recd, movement &current)
 {
 	unsigned int rtn_code = Read(handle, recd);
 	// rtn_code_out(rtn_code);
 	// Return code handling   
 	switch (rtn_code)
 	{
-		case LDR_SUCCESS:
+		while(true)
+		{
+			case LDR_SUCCESS:
 				current.stepA = recd.stepA;
 				current.stepC = recd.stepC;
-			Wait(SEC_2);
-			break;
-		case LDR_ENDOFFILE:
-			// No more data to read.
-			return;
-		default:
-			// Unanticipated exception. 
-			TextOut(0, LCD_LINE1, "read failed     ");
-			rtn_code_out(rtn_code);
-			shutdown(SEC_8);
+				RotateMotor(OUT_A,75,recd.stepA);
+				RotateMotor(OUT_C,75,recd.stepC);
+				/*Wait(SEC_2);*/
+				break;
+			case LDR_ENDOFFILE:
+				// No more data to read.
+				return;
+			default:
+				// Unanticipated exception. 
+				TextOut(0, LCD_LINE1, "read failed     ");
+				rtn_code_out(rtn_code);
+				shutdown(SEC_8);
+		}
 	}
 }
