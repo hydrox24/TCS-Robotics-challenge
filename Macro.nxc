@@ -6,15 +6,31 @@
 
 #include "file_system.nxc"
 
+struct movement
+{
+	int stepA;
+	int stepC;
+}
+
+void update_movement(movement & m)
+{
+	m.stepA = MotorRotationCount(OUT_A);
+	m.stepC = MotorRotationCount(OUT_C);
+}
+
 task main()
 {
-	int step_valueA, step_valueC;
+	movement m;
 	open_for_write();
 	while(true)
 	{
-		step_valueA = MotorRotationCount(OUT_A);
-		step_valueC = MotorRotationCount(OUT_C);
-		write_recd(step_valueA,step_valueC);
+//		step_valueA = MotorRotationCount(OUT_A);
+//		step_valueC = MotorRotationCount(OUT_C);
+//		stepA = MotorRotationCount(OUT_A);
+//		stepC = MotorRotationCount(OUT_C);
+		update_movement(m);
+//		write_recd(step_valueA,step_valueC);
+		write_recd(m);
 		ResetTachoCount(OUT_AC);
 		Wait(20);
 	}

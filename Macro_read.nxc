@@ -8,7 +8,4 @@
 task main()
 {
 	open_for_read();
-	while(true)
-	{
-	}
 }
