@@ -6,18 +6,6 @@
 
 #include "file_system.nxc"
 
-struct movement
-{
-	int stepA;
-	int stepC;
-}
-
-void update_movement(movement & m)
-{
-	m.stepA = MotorRotationCount(OUT_A);
-	m.stepC = MotorRotationCount(OUT_C);
-}
-
 task main()
 {
 	movement m;

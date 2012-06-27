@@ -16,6 +16,18 @@
 
 byte handle = 0; // file handle
 
+struct movement
+{
+	int stepA;
+	int stepC;
+};
+
+void update_movement(movement & m)
+{
+	m.stepA = MotorRotationCount(OUT_A);
+	m.stepC = MotorRotationCount(OUT_C);
+}
+
 // Make sure file is closed whether or not file operations succeed or fail.
 void shutdown(const int delay)
 {
@@ -79,14 +91,11 @@ void open_for_read()
 }
 
 // Write one circle record to the data file.
-void write_recd(int recd, int recd2)
+void write_recd(const movement recd)
 {
-	int rtn_code = Write(handle, recd);
-	int temp = Write(handle, " ");
-	int rtn_code2 = Write(handle, recd);
-	int temp1 = Write(handle, "\n");
+	unsigned int rtn_code = Write(handle, recd);
 	// Return code handling
-	if (rtn_code != LDR_SUCCESS || rtn_code2 != LDR_SUCCESS)
+	if (rtn_code != LDR_SUCCESS)
 	{
 		switch (rtn_code)
 		{
@@ -105,7 +114,7 @@ void write_recd(int recd, int recd2)
 
 // Read all the circle records from the data file. Display each circle as it is 
 // read.
-void read_all(int recd)
+void read_all(const movement recd)
 {
 	while (true)
 	{
