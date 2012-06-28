@@ -32,20 +32,6 @@ task main()
 			OnFwd(OUT_C, CorrectLow);
 			until(Sensor(IN_1) == 6)
 		}
-//		else if (Black_time >= 100 )
-//		{
-//			if (Last_detected == 1)
-//			{
-//				Off(OUT_AC);
-//				OnFwd(OUT_C, SPEED); 
-//			}
-//			else
-//			{
-//				Off(OUT_AC);
-//				OnFwd(OUT_A, SPEED); 
-//			}
-//			Black_time = 0;
-//		}
 		else
 		{
 			Black_time += 10;

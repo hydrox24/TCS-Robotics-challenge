@@ -32,17 +32,23 @@ task main()
 	OnFwd(OUT_C, 47);
 	until(Sensor(IN_3) > 42);
 	OnFwd(OUT_AC, 0);
-	RotateMotor(OUT_A,100,123);
+	RotateMotor(OUT_A,100,110);
 	OnFwd(OUT_AC, 50);
 	Wait(1600);
 	// Out of Inner circle
 	Off(OUT_AC);
 	RotateMotor(OUT_A,75,150);
-	OnFwd(OUT_AC, 50);
-	Wait(1000);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 50);
+	Wait(1600);
 	Off(OUT_AC);
-	RotateMotor(OUT_A,75,150);
-	OnFwd(OUT_AC, 50);
+	RotateMotor(OUT_A,75,70);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 47);
 	until(Sensor(IN_3) > 50);
-	RotateMotor(OUT_C,75,150);
+	Off(OUT_AC);
+	RotateMotor(OUT_C,75,105);
+	OnFwd(OUT_A, 65);
+	OnFwd(OUT_C, 57);
+	Wait(1500);
 }
