@@ -9,6 +9,7 @@
 task main()
 {
 	movement m;
+	movement test;
 	open_for_write();
 	while(true)
 	{
@@ -17,8 +18,11 @@ task main()
 //		stepA = MotorRotationCount(OUT_A);
 //		stepC = MotorRotationCount(OUT_C);
 		update_movement(m);
+		test.stepA = 1;
+		test.stepC = 0;
 //		write_recd(step_valueA,step_valueC);
 		write_recd(m);
+		write_recd(test);
 		ResetTachoCount(OUT_AC);
 		Wait(20);
 	}
