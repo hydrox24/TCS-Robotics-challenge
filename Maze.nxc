@@ -1,13 +1,48 @@
+#define SPEED 40
+#define CorrectHigh 65
+#define CorrectLow 5
+
+void LineFollow()
+{
+	while(true)
+	{
+		if (Sensor(IN_1) == 6)
+		{
+			OnFwd(OUT_C, CorrectHigh);
+			OnFwd(OUT_A, CorrectLow);
+			until(Sensor(IN_3) > 38)
+		}
+		else if (Sensor(IN_3) > 38)
+		{
+			OnFwd(OUT_A, CorrectHigh);
+			OnFwd(OUT_C, CorrectLow);
+			until(Sensor(IN_1) == 6)
+		}
+		else
+		{
+			OnFwd(OUT_AC, SPEED);
+		}
+	}
+}
+
 task main()
 {
 	SetSensorLight(IN_3);
-	OnFwd(OUT_AC, 45);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 47);
 	until(Sensor(IN_3) > 42);
-	Off(OUT_AC);
-	RotateMotor(OUT_A,75,130);
+	OnFwd(OUT_AC, 0);
+	RotateMotor(OUT_A,100,123);
 	OnFwd(OUT_AC, 50);
-	Wait(800);
+	Wait(1600);
+	// Out of Inner circle
+	Off(OUT_AC);
 	RotateMotor(OUT_A,75,150);
 	OnFwd(OUT_AC, 50);
 	Wait(1000);
+	Off(OUT_AC);
+	RotateMotor(OUT_A,75,150);
+	OnFwd(OUT_AC, 50);
+	until(Sensor(IN_3) > 50);
+	RotateMotor(OUT_C,75,150);
 }
