@@ -1,8 +1,9 @@
 task main()
 {
 	SetSensorLight(IN_3);
-	SetSensorColorFull(IN_1);
 	OnFwd(OUT_AC, 100);
-	Wait(100);
-	until(Sensor(IN_3) > 42);
+	Wait(400);
+	OnFwd(OUT_AC, 100);
+	until(Sensor(IN_3) > 45);
+	Off(OUT_AC);
 }

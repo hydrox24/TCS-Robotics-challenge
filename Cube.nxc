@@ -4,8 +4,21 @@ task main()
 	OnFwd(OUT_A, 55);
 	OnFwd(OUT_C, 47);
 	until(Sensor(IN_3) > 42);
-	OnFwd(OUT_AC, 0);
-	RotateMotor(OUT_A,100,110);
-	OnFwd(OUT_AC, 50);
-	Wait(1600);
+	Wait(500);
+	Off(OUT_AC);
+	RotateMotor(OUT_A,100,100);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 47);
+	Wait(800);
+	Off(OUT_AC);
+	RotateMotor(OUT_A,100,100);
+	Off(OUT_AC);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 47);
+	until(Sensor(IN_3) > 43 && Sensor(IN_3) < 60);
+	Off(OUT_AC);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 47);
+	Wait(400);
+	Off(OUT_AC);
 }
