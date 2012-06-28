@@ -1,0 +1,11 @@
+task main()
+{
+	SetSensorLight(IN_3);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 47);
+	until(Sensor(IN_3) > 42);
+	OnFwd(OUT_AC, 0);
+	RotateMotor(OUT_A,100,110);
+	OnFwd(OUT_AC, 50);
+	Wait(1600);
+}

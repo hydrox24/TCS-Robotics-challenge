@@ -1,0 +1,38 @@
+#define SPEED 40
+#define CorrectHigh 65
+#define CorrectLow 5
+
+int timer;
+
+task main()
+{
+	OnFwd(OUT_AC, 70);
+	Wait(10);
+	SetSensorLight(IN_3);
+	SetSensorColorFull(IN_1);
+	OnFwd(OUT_AC, SPEED);
+	while(true)
+	{
+		if (Sensor(IN_1) == 6)
+		{
+			OnFwd(OUT_C, CorrectHigh);
+			OnFwd(OUT_A, CorrectLow);
+			until(Sensor(IN_3) > 38)
+		}
+		else if (Sensor(IN_3) > 38)
+		{
+			OnFwd(OUT_A, (CorrectHigh + 10));
+			OnFwd(OUT_C, CorrectLow);
+			until(Sensor(IN_1) == 6)
+		}
+		else
+		{
+			OnFwd(OUT_AC, SPEED);
+		}
+	}
+	Off(OUT_AC);
+	RotateMotor(OUT_A,100,150);
+	OnFwd(OUT_A, 55);
+	OnFwd(OUT_C, 50);
+	Wait(1000);
+}
