@@ -1,29 +1,27 @@
-// The file size is made small so it will fill up quickly.
+// Set definitions for the file that data will be written to
 #define RECORDS 2000
 #define RECORD_SIZE 6
 #define FILE_SIZE (RECORD_SIZE * RECORDS)
 #define FILE_NAME "movement.dat"
-
+// include a file full of functions for using files easily.
 #include "file_system.nxc"
 
 task main()
 {
+	// Create an instance of the 'movement' class, called 'm'
 	movement m;
-	movement test;
+	// Open the file for writing (see the 'file_system.nxc' file for the function
 	open_for_write();
+	// Infinite loop until program is ended
 	while(true)
 	{
-//		step_valueA = MotorRotationCount(OUT_A);
-//		step_valueC = MotorRotationCount(OUT_C);
-//		stepA = MotorRotationCount(OUT_A);
-//		stepC = MotorRotationCount(OUT_C);
+		// Write the relevant values to the 'm' class
 		update_movement(m);
-		test.stepA = 1;
-		test.stepC = 0;
-//		write_recd(step_valueA,step_valueC);
+		// Add copy of movement data for this loop to the file
 		write_recd(m);
-		write_recd(test);
+		// So values don't accumulate over loops
 		ResetTachoCount(OUT_AC);
+		// Lower amount of data written to file and increase reliability
 		Wait(20);
 	}
 }
