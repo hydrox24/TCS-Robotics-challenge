@@ -13,6 +13,12 @@ task main()
 	OnFwd(OUT_AC, SPEED);
 	while(true)
 	{
+		/* Following is pseudo code
+		if (MOTOR ROTATION > DEGREES)
+		{
+			break;
+		}
+		Feel free to implement it if you want */
 		if (Sensor(IN_1) == 6)
 		{
 			OnFwd(OUT_C, CorrectHigh);
@@ -30,7 +36,10 @@ task main()
 			OnFwd(OUT_AC, SPEED);
 		}
 	}
+	// Commands to be executed, however the while loop is not broken
+	// pseudo code is implemented
 	Off(OUT_AC);
+	// Turn Motor 90 (our gearing means that the second value isn't 90)
 	RotateMotor(OUT_A,100,150);
 	OnFwd(OUT_A, 55);
 	OnFwd(OUT_C, 50);

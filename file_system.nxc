@@ -43,6 +43,8 @@ void shutdown(const int delay)
 void rtn_code_out(const unsigned int code)
 {
 	/*TextOut(0, LCD_LINE2, "code            ");*/
+	// This line was causing issues on non-enhance NXT firmware
+	// feel free to uncomment it if you are running the enhanced firmware
 	/*TextOut(50, LCD_LINE2, FormatNum("%04x", code));*/
 }
 
